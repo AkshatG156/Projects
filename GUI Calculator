@@ -1,0 +1,48 @@
+import tkinter as tk
+from tkinter import *
+app=Tk()
+app.resizable(0,0)
+app.anchor('n')
+app.title('My Calculator')
+def btn_click(value):
+    global expression
+    expression = expression+str(value)
+    input_text.set(expression)
+def btn_clear():
+    global expression
+    expression = ''
+    input_text.set('')
+def btn_pct(value):
+    global expression
+    result=str(eval(expression))
+    percent_result=str(float(result)/100)
+    input_text.set(percent_result)
+def btn_equal():
+    global expression
+    result = str(eval(expression))
+    input_text.set(result)
+expression = ''
+input_text=StringVar()
+cal_entry=Entry(app,textvariable=input_text,highlightbackground='Black',highlightcolor='Black',cursor='hand2',font=(24),width=25,justify=RIGHT,highlightthickness=2)
+cal_entry.pack(padx=10,pady=10,ipadx=5,ipady=5)
+cal_buttons=Frame(app,)
+cal_buttons.pack()
+clear=Button(cal_buttons,bg='White',bd=2,width=17,height=2,cursor='hand2',text='Clear',font=24,command=lambda:btn_clear()).grid(column=0,row=1,columnspan=4)
+percentage=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='%',font=24,command=lambda:btn_pct('%')).grid(column=4,row=1,columnspan=10)
+seven=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='7',font=24,command=lambda:btn_click(7)).grid(column=1,row=2)
+eight=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='8',font=24,command=lambda:btn_click(8)).grid(column=2,row=2)
+nine=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='9',font=24,command=lambda:btn_click(9)).grid(column=3,row=2)
+divide=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='/',font=24,command=lambda:btn_click('/')).grid(column=4,row=2)
+four=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='4',font=24,command=lambda:btn_click(4)).grid(column=1,row=3)
+five=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='5',font=24,command=lambda:btn_click(5)).grid(column=2,row=3)
+six=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='6',font=24,command=lambda:btn_click(6)).grid(column=3,row=3)
+multiply=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='*',font=24,command=lambda:btn_click('*')).grid(column=4,row=3)
+one=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='1',font=24,command=lambda:btn_click(1)).grid(column=1,row=4)
+two=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='2',font=24,command=lambda:btn_click(2)).grid(column=2,row=4)
+three=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='3',font=24,command=lambda:btn_click(3)).grid(column=3,row=4)
+subtract=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='-',font=24,command=lambda:btn_click('-')).grid(column=4,row=4)
+add=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='+',font=24,command=lambda:btn_click('+')).grid(column=4,row=5)
+zero=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='0',font=24,command=lambda:btn_click(0)).grid(column=1,row=5)
+decimal=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='.',font=24,command=lambda:btn_click('.')).grid(column=2,row=5)
+equal=Button(cal_buttons,bg='White',bd=2,width=5,height=2,cursor='hand2',text='=',font=24,command=lambda:btn_equal()).grid(column=3,row=5)
+app.mainloop()
