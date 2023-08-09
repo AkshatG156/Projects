@@ -1,0 +1,4 @@
+import segno
+from segno import make_qr
+QRCode=segno.make_qr(content='www.youtube.com')
+QRCode.show(scale=20,dark='Yellow',light='Black')
