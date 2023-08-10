@@ -1,0 +1,27 @@
+import pytube
+from pytube import YouTube
+import tkinter as tk
+from tkinter import *
+
+app=tk.Tk()
+app.resizable(0,0)
+app.title('Video Downloader')
+
+def Downloader():
+    url=YouTube(str(link.get()))
+    video=url.streams.get_highest_resolution()
+    output_path = ''
+    video.download(output_path)
+    downloaded_label.config(text='Downloaded to '+ output_path)
+
+link=StringVar()
+vd_entry=Entry(app,textvariable=link,highlightbackground='Black',highlightcolor='Black',cursor='hand2',font=(24),width=25,justify=RIGHT,highlightthickness=2)
+vd_entry.pack(padx=10,pady=10,ipadx=5,ipady=5)
+vd_btn=Frame(app)
+vd_btn.pack()
+
+Download=Button(vd_btn,bg='White',bd=2,width=17,height=2,cursor='hand2',text='Download',font=24,command=lambda:Downloader()).grid(column=0,row=1,columnspan=4)
+
+downloaded_label = Label(app, text='', font=("Calibri", 18))
+downloaded_label.pack()
+app.mainloop()
